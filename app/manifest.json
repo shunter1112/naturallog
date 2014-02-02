@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Lab3b MVC with controller",
-  "version": "1",
+  "name": "Natural Log",
+  "version": "0.1",
   "app": {
     "background": {
       "scripts": ["main.js"]
