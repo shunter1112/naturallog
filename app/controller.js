@@ -1,11 +1,11 @@
-function TodoCtrl($scope) {
-  $scope.todos = [
-    {text:'learn angular', done:true},
-    {text:'build an angular app', done:false}];
+function LogCtrl($scope) {
+  $scope.logs = [
+    {note:'======ウォークショップの開始========', time:"12:33:20"},
+    {note:'彼が喋り出した', time:"12:33:44"}];
  
   $scope.addTodo = function() {
-    $scope.todos.push({text:$scope.todoText, done:false});
-    $scope.todoText = '';
+    $scope.logs.push({note:$scope.logNote, time:getCurrentTime()});
+    $scope.logNote = '';
   };
  
   $scope.remaining = function() {

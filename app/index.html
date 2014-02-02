@@ -1,27 +1,36 @@
 <!doctype html>
 <html ng-app ng-csp>
   <head>
-    <link rel="stylesheet" href="todo.css">
+    <meta charset="utf8"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h2>Todo</h2>
-    <div ng-controller="TodoCtrl">
-      <span>{{remaining()}} of {{todos.length}} remaining</span>
-      [ <a href="" ng-click="archive()">archive</a> ]
-      <ul class="unstyled">
-        <li ng-repeat="todo in todos">
-          <input type="checkbox" ng-model="todo.done">
-          <span class="done-{{todo.done}}">{{todo.text}}</span>
-        </li>
+    <nav>
+      <h1>Natural Log</h1>
+      <ul>
+        <li>Save</li>
+        <li>Load</li>
       </ul>
+    </nav>
+    <div ng-controller="LogCtrl" class="container">
+      <div class="logbody">
+        <table>
+          <tr ng-repeat="log in logs">
+            <td class="time">{{log.time}}</td>
+            <td class="note">{{log.note}}</td>
+          </tr>
+        </table>
+      </div>
       <form ng-submit="addTodo()">
-        <input type="text" ng-model="todoText"  size="30"
-               placeholder="add new todo here">
+        <span id="currentTime" ng-model="logTime">99:99:99</span>
+        <input type="text" ng-model="logNote"  size="30" placeholder="Memo">
         <input class="btn-primary" type="submit" value="add">
       </form>
     </div>
     <script src="angular.min.js"></script>
     <script src="controller.js"></script>
+    <script src="timer.js"></script>
     <script src="app.js"></script>
     <script src="dnd.js"></script>
   </body>
