@@ -6,32 +6,34 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <nav>
-      <h1>Natural Log</h1>
-      <ul>
-        <li>Save</li>
-        <li>Load</li>
-      </ul>
-    </nav>
-    <div ng-controller="LogCtrl" class="container">
-      <div class="logbody">
-        <table>
-          <tr ng-repeat="log in logs">
-            <td class="time">{{log.time}}</td>
-            <td class="note">{{log.note}}</td>
-          </tr>
-        </table>
-      </div>
-      <form ng-submit="addTodo()">
-        <span id="currentTime" ng-model="logTime">99:99:99</span>
-        <input type="text" ng-model="logNote"  size="30" placeholder="Memo">
-        <input class="btn-primary" type="submit" value="add">
-      </form>
+    <div id="SubPanel">
+      
     </div>
-    <script src="js/angular.min.js"></script>
-    <script src="js/controller.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/dnd.js"></script>
+    <div id="MainPanel">
+      <nav>
+        <h1 id="SubPanelCaller">Natural Log</h1>
+      </nav>
+      <div ng-controller="LogCtrl" class="container">
+        <div class="logbody">
+          <table>
+            <tr ng-repeat="log in logs">
+              <td class="time">{{log.time}}</td>
+              <td class="note">{{log.note}}</td>
+            </tr>
+          </table>
+        </div>
+        <form ng-submit="addTodo()">
+          <span id="currentTime" ng-model="logTime">99:99:99</span>
+          <input type="text" ng-model="logNote" size="30" placeholder="Memo">
+          <input class="btn-primary" type="submit" value="add">
+        </form>
+      </div>
+      <script src="js/angular.min.js"></script>
+      <script src="js/controller.js"></script>
+      <script src="js/timer.js"></script>
+      <script src="js/sub_panel.js"></script>
+      <script src="js/app.js"></script>
+      <script src="js/dnd.js"></script>
+    </div>
   </body>
 </html>
