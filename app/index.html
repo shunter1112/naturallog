@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
+  <body ng-controller="LogCtrl">
     <div id="SubPanel">
       
     </div>
@@ -13,7 +13,7 @@
       <nav>
         <h1 id="SubPanelCaller">Natural Log</h1>
       </nav>
-      <div ng-controller="LogCtrl" class="container">
+      <div class="container">
         <div class="logbody">
           <table>
             <tr ng-repeat="log in logs">

@@ -2,9 +2,10 @@ var naturalLog = angular.module('naturalLog', ['angularLocalStorage','ngCookies'
 
 naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
     
-  storage.bind($scope, 'logs',[
+  storage.bind($scope, 'logs', {defaultValue: [
     {note:'======ウォークショップの開始========', time:"12:33:20"},
-    {note:'彼が喋り出した', time:"12:33:44"}]); 
+    {note:'彼が喋り出した', time:"12:33:44"}
+  ]}); 
  
   $scope.addTodo = function() {
     console.log();
@@ -19,7 +20,7 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
       // console.log(insideWindow.scrollTop);
     
     },50);
-    
+
   };
- 
+  
 }]);
