@@ -29,6 +29,8 @@ body {
   width: 100%;
   background: #333;
   z-index: 1;
+  padding: 0;
+  margin: 0;
 }
 #MainPanel{
   position: absolute;
@@ -46,11 +48,10 @@ body {
 #MainPanel.isOpened{
   left: 16em;
 }
-#SubPanelCaller{
-  margin-left: 2rem;
-  cursor: pointer;
+h1{
+  padding-left: 4rem;
 }
-#SubPanelCaller:before{
+h1:before{
   content: "";
   display: block;
   width: 2rem;
@@ -72,11 +73,15 @@ nav {
   height: 3em; /* 16px * 2 = 32px */
   width: 100%;
   z-index: 2;
+  background: rgba(255,255,255,.3);
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  box-shadow: 0px 1px 0px rgba(0,0,0,.2);
+  cursor: pointer;
 }
 nav h1 {
   margin: 0px;
   line-height: 2em;
-  padding-left: 1em;
+  padding-left: 2em;
   float: left;
   color: #FFF;
   text-shadow: 0px 1px 1px #000;
@@ -120,6 +125,7 @@ table{
   background: #EEE;
   width: 100%;
   margin: 0;
+  margin-top: 3em;
   border-radius: 4px;
   box-sizing: border-box;
   border: 1px solid #888;
@@ -173,4 +179,44 @@ form input[type="submit"]{
   box-shadow: inset 0px 1px 0px #999;
   color: #FFF;
   text-shadow: 0px 1px 1px #333;
+}
+
+/* --------------------------------------------------------- */
+/* -------------------      SubPanel      ------------------ */
+/* --------------------------------------------------------- */
+
+input[type="radio"]{
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  -o-appearance:none;
+  display: block;
+}
+#SubPanel ul{
+  margin: 0;
+  padding: 0;
+  width: 16em;
+}
+#SubPanel li{
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 16em;
+  position: relative;
+  height: 3em;
+  line-height: 3em;
+}
+#SubPanel label{
+  line-height: 3em;
+  padding: 0.5em;
+  color: #FFF;
+  text-shadow: 0px 1px 1px #000;
+}
+
+.remove{
+  position: absolute;
+  display: block;
+  width: 2em;
+  height: 2em;
+  border: none;
+  right: 0.5em;
 }

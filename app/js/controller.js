@@ -44,7 +44,7 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
       note_title : "九州大学第１回WS",
       date_notes : [
         {
-          date: "2014/02/14",
+          date: "2014/02/09",
           notes : [
             {time: "09:00:12", content: "はあ"},
             {time: "09:00:12", content: "どうのかなぁ"},
@@ -142,12 +142,27 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
       return output
     })();
     
-    console.log(output_data);
-    
     var csv_data = output_data.map(function(l){return l.join(',')}).join('\r\n');
     var blob = new Blob([bom, csv_data], { type: 'text/csv' });
     var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    window.location.href = url;
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";    
+    a.href = url;
+    a.download = filename;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    
+  }
+  
+  $scope.deleteLog = function(uuid){
+    if(window.confirm('Are you sure to delete this log?')){
+      var thatIndex; 
+      for (var i in $scope.logs) if ($scope.logs[i].uuid == uuid) thatIndex = i;
+      console.log(thatIndex);
+      console.log($scope.logs[thatIndex]);
+      $scope.logs.splice(thatIndex,1);
+    }
   }
   
 }]);

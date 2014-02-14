@@ -4,14 +4,20 @@
     <meta charset="utf8"  />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sprites.css">
   </head>
   <body ng-controller="LogCtrl">
+    
     <div id="SubPanel">
       <ul>
         <form>
-        <li ng-repeat="log in logs">
-          <input type="radio" name="note_title" value="{{log.uuid}}"  ng-model="$parent.noteFilter">{{log.note_title}}</input>
-        </li>
+          <li ng-repeat="log in logs">
+            <label>
+              <input type="radio" name="note_title" value="{{log.uuid}}"  ng-model="$parent.noteFilter"></input>
+              {{log.note_title}}
+              <button ng-click="deleteLog(log.uuid)" class="icon-remove remove"></button>
+            </label>
+          </li>
         </form>
         <li>
           <form ng-submit="addLog()">
@@ -21,20 +27,22 @@
         </li>
       </ul>
     </div>
-    <div id="MainPanel">
-      <nav>
-        <h1 id="SubPanelCaller">Natural Log <button ng-click="resetLog();">Reset</button><button ng-click="downloadLog();" id="js-download">Download</button></h1>
+    
+    <div id="MainPanel" class="isOpened">
+      <nav id="SubPanelCaller">
+        <h1>Natural Log <button ng-click="resetLog();">Reset</button><button ng-click="downloadLog();">Download</button></h1>
       </nav>
       <div class="container">
         <div class="logbody" ng-repeat="l in logs | filter: {uuid: noteFilter}">
-          <h2>{{l.note_title}} {{l.uuid}}</h2>
-          <div ng-repeat="date_note in l.date_notes">
-          <h3>{{date_note.date}}</h3>
           <table>
-            <tr ng-repeat="n in date_note.notes">
-              <td class="time">{{n.time}}</td>
-              <td class="note">{{n.content}}</td>
-            </tr>
+            <tr><td colspan="2"><h2>{{l.note_title}} {{l.uuid}}</h2></td></tr>
+            <tbody ng-repeat="date_note in l.date_notes">
+              <tr><td colspan="2"><h3>{{date_note.date}}</h3></td></tr>
+              <tr ng-repeat="n in date_note.notes">
+                <td class="time">{{n.time}}</td>
+                <td class="note">{{n.content}}</td>
+              </tr>
+            </tbody>
           </table>
           </div>
         </div>
