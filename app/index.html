@@ -14,7 +14,7 @@
         </li>
         </form>
         <li>
-          <form ng-submit="addTitle()">
+          <form ng-submit="addLog()">
             <input type="text" ng-model="newLog" size="30" placeholder="Enter new title">
             <intpu type="submit" value="Add new note">          
           </form>
@@ -23,7 +23,7 @@
     </div>
     <div id="MainPanel">
       <nav>
-        <h1 id="SubPanelCaller">Natural Log <button ng-click="resetLog();">Reset</button></h1>
+        <h1 id="SubPanelCaller">Natural Log <button ng-click="resetLog();">Reset</button><button ng-click="downloadLog();" id="js-download">Download</button></h1>
       </nav>
       <div class="container">
         <div class="logbody" ng-repeat="l in logs | filter: {uuid: noteFilter}">

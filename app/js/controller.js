@@ -72,7 +72,6 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
     var thatLog = $scope.logs.filter(function(item, index){
       if (item.uuid == $scope.noteFilter) return true;
     });
-
     var thatDateNote 
     while(!thatDateNote){
       thatDateNote = thatLog[0].date_notes.filter(function(item, index){
@@ -83,7 +82,6 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
         thatLog[0].date_notes.push({date: String(getCurrentDate()), notes: []})
       }
     }
-
     thatDateNote[0].notes.push({ content:$scope.noteContent, time:getCurrentTime()});
 
     $scope.noteContent = '';
@@ -98,6 +96,58 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
     },50);
   };
   
+  $scope.addLog = function(){
+    var new_uuid = guid();
+    $scope.logs.push({
+      uuid : String(new_uuid),
+      note_title : $scope.newLog,
+      date_notes : [
+        {
+          date: String(getCurrentDate()),
+          notes : []
+        }
+      ]
+    });
+    $scope.noteFilter = new_uuid;
+    $scope.newLog = "";
+  }
+  
   $scope.resetLog = function(){ storage.clearAll(); }
+  
+  $scope.downloadLog = function(){
+    
+    /* cited from http://d.hatena.ne.jp/do_aki/20130225/1361763613 */
+    
+    var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    
+    var filename = "";
+    output_data = (function(){   
+      var thatLog = $scope.logs.filter(function(item, index){
+        if (item.uuid == $scope.noteFilter) return true;
+      })[0];
+      filename = thatLog.note_title;
+      var output = [
+        [thatLog.note_title,'',''],
+        ['DATE','TIME','NOTE'],
+      ]
+      console.log(thatLog);
+      
+      for(var i in thatLog.date_notes){
+        var dn = thatLog.date_notes[i];
+        for(var j in dn.notes){
+          var n = dn.notes[j];
+          output.push([dn.date, n.time, n.content]);
+        }
+      }
+      return output
+    })();
+    
+    console.log(output_data);
+    
+    var csv_data = output_data.map(function(l){return l.join(',')}).join('\r\n');
+    var blob = new Blob([bom, csv_data], { type: 'text/csv' });
+    var url = (window.URL || window.webkitURL).createObjectURL(blob);
+    window.location.href = url;
+  }
   
 }]);
