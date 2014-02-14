@@ -130,7 +130,7 @@ td.time{
   width: 6em;
 }
 
-form{
+#MainPanel form{
   display: box;
   display: -webkit-box;
   position: absolute;

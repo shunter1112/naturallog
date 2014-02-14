@@ -7,35 +7,49 @@
   </head>
   <body ng-controller="LogCtrl">
     <div id="SubPanel">
-      
+      <ul>
+        <form>
+        <li ng-repeat="log in logs">
+          <input type="radio" name="note_title" value="{{log.uuid}}"  ng-model="$parent.noteFilter">{{log.note_title}}</input>
+        </li>
+        </form>
+        <li>
+          <form ng-submit="addTitle()">
+            <input type="text" ng-model="newLog" size="30" placeholder="Enter new title">
+            <intpu type="submit" value="Add new note">          
+          </form>
+        </li>
+      </ul>
     </div>
     <div id="MainPanel">
       <nav>
-        <h1 id="SubPanelCaller">Natural Log</h1>
+        <h1 id="SubPanelCaller">Natural Log <button ng-click="resetLog();">Reset</button></h1>
       </nav>
       <div class="container">
-        <div class="logbody">
+        <div class="logbody" ng-repeat="l in logs | filter: {uuid: noteFilter}">
+          <h2>{{l.note_title}} {{l.uuid}}</h2>
+          <div ng-repeat="date_note in l.date_notes">
+          <h3>{{date_note.date}}</h3>
           <table>
-            <tr ng-repeat="log in logs">
-              <td class="time">{{log.time}}</td>
-              <td class="note">{{log.note}}</td>
+            <tr ng-repeat="n in date_note.notes">
+              <td class="time">{{n.time}}</td>
+              <td class="note">{{n.content}}</td>
             </tr>
           </table>
+          </div>
         </div>
-        <form ng-submit="addTodo()">
-          <span id="currentTime" ng-model="logTime">99:99:99</span>
-          <input type="text" ng-model="logNote" size="30" placeholder="Memo">
+        <form ng-submit="addNote()">
+          <span id="currentTime" ng-model="noteTime">99:99:99</span>
+          <input type="text" ng-model="noteContent" size="30" placeholder="Memo">
           <input class="btn-primary" type="submit" value="add">
         </form>
       </div>
       <script src="js/angular.min.js"></script>
       <script src="js/angular-cookies.min.js"></script>
       <script src="js/angularLocalStorage.js"></script>
+      <script src="js/utility.js"></script>
       <script src="js/controller.js"></script>
-      <script src="js/timer.js"></script>
       <script src="js/sub_panel.js"></script>
-      <script src="js/app.js"></script>
-      <script src="js/dnd.js"></script>
     </div>
   </body>
 </html>
