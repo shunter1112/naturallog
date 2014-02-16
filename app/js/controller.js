@@ -29,36 +29,12 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
       note_title : "広島大学第１回WS",
       date_notes : [
         {
-          date: "2014/02/10",
+          date: "2014/02/11",
           notes : [
-            {time: "09:00:12", content: "ワークショップ開始"},
-            {time: "09:00:12", content: "どうしたものかなぁ"},
-            {time: "09:00:12", content: "困ったね"},
-            {time: "09:12:90", content: "ワークショップで焦る人続出"}
-          ]
-        }
-      ]
-    },
-    {
-      uuid : String(guid()),
-      note_title : "九州大学第１回WS",
-      date_notes : [
-        {
-          date: "2014/02/09",
-          notes : [
-            {time: "09:00:12", content: "はあ"},
-            {time: "09:00:12", content: "どうのかなぁ"},
-            {time: "09:00:12", content: "たね"},
-            {time: "09:12:90", content: "ョップで焦る人続出"}
-          ]
-        },
-        {
-          date: "2014/02/12",
-          notes : [
-            {time: "09:00:12", content: "テス"},
-            {time: "09:00:12", content: "どぁ"},
-            {time: "09:00:12", content: "たね"},
-            {time: "09:12:90", content: "ョッ続出"}
+            {time: "09:00:12", content: "今日は"},
+            {time: "09:00:12", content: "こんな"},
+            {time: "09:00:12", content: "ログを"},
+            {time: "09:12:90", content: "取ったよぉ"}
           ]
         }
       ]
@@ -118,6 +94,7 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
     
     /* cited from http://d.hatena.ne.jp/do_aki/20130225/1361763613 */
     
+     mainPanel.classList.toggle("isOpened");
     var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
     
     var filename = "";
