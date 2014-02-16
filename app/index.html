@@ -4,8 +4,6 @@
     <meta charset="utf8"  />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/sprites.css">
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body ng-controller="LogCtrl">
     
@@ -29,7 +27,7 @@
     
     <div id="MainPanel" >
       <nav id="SubPanelCaller">
-        <h1>Natural Log <!--button ng-click="resetLog();">Reset</button--><button ng-click="downloadLog();" class="download">Download Log</button></h1>
+        <h1>Natural Log <button ng-click="resetLog();">Reset</button><button ng-click="downloadLog();" class="download">Download Log</button></h1>
       </nav>
       <div class="container">
         <div class="logbody" ng-repeat="l in logs | filter: {uuid: noteFilter}">
@@ -52,11 +50,7 @@
         </form>
       </div>
       <script src="js/angular.min.js"></script>
-      <script src="js/angular-cookies.min.js"></script>
-      <script src="js/angularLocalStorage.js"></script>
-      <script src="js/utility.js"></script>
       <script src="js/controller.js"></script>
-      <script src="js/sub_panel.js"></script>
     </div>
   </body>
 </html>
