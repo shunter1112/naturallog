@@ -35,10 +35,10 @@
           <table>
             <tr><td colspan="2"><h2>{{l.note_title}}</h2></td></tr>
             <tbody ng-repeat="date_note in l.date_notes">
-              <tr><td colspan="2"><h3>{{date_note.date}}</h3></td></tr>
+              <tr><td colspan="2" contenteditable="true"><h3>{{date_note.date}}</h3></td></tr>
               <tr ng-repeat="n in date_note.notes">
                 <td class="time">{{n.time}}</td>
-                <td class="note">{{n.content}}</td>
+                <td class="note" contenteditable="true" ng-blur="editNote(date_note,target,$index)" ng-click="target=$event.target">{{n.content}}</td>
               </tr>
             </tbody>
           </table>

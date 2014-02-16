@@ -1,5 +1,13 @@
 var naturalLog = angular.module('naturalLog', ['angularLocalStorage','ngCookies']);
 
+naturalLog.directive('ngBlur', function() {
+  return function( scope, elem, attrs ) {
+    elem.bind('blur', function() {
+      scope.$apply(attrs.ngBlur);
+    });
+  };
+});
+
 naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
     
   var default_uuid = "8982a835-bc35-edb3-4252-646f622e0d25";
@@ -72,6 +80,12 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
     },50);
   };
   
+  $scope.editNote = function(date_note,target,index){
+     console.log(date_note.notes[index]);
+     console.log(target);
+     date_note.notes[index].content = target.innerText;
+  }
+  
   $scope.addLog = function(){
     var new_uuid = guid();
     $scope.logs.push({
@@ -116,7 +130,8 @@ naturalLog.controller('LogCtrl',['$scope','storage',function($scope, storage) {
           output.push([dn.date, n.time, n.content]);
         }
       }
-      return output
+      return output;
+      
     })();
     
     var csv_data = output_data.map(function(l){return l.join(',')}).join('\r\n');
